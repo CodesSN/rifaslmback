@@ -76,7 +76,7 @@ ts = (n)? parseInt(ts.replace("000","")) : (d)? parseInt(ts.replace("00","")) : 
     <p style="color: #000; font-size: 20px;">Estado: ${req.params.state}</p>
     <p style="color: #000; font-size: 20px;">Ciudad: ${req.params.city}</p>
     <input type="submit" value="Confirmar Pago" style="border="none"; border-radius="100px"; margin-top: 20px; width: 120px; height: 90px; background-color: #315DCC; color: #fff;">
-    <p style="color: #000; font-size: 20px;">Fecha de vencimiento de la reservacion: ${moment().add(7, 'days').format('LLLL')}</p>
+    <p style="color: #000; font-size: 20px;">Fecha de vencimiento de la reservacion: ${moment().add(15, 'days').format('LLLL')}</p>
     </form>
     `;
     const client = `
@@ -89,7 +89,7 @@ ts = (n)? parseInt(ts.replace("000","")) : (d)? parseInt(ts.replace("00","")) : 
     <p>Ciudad: ${req.params.city}</p>
     <h1>Favor de depositar en esta tarjeta</h1>
     <p>Numero de tarjeta: 5204 1654 4685 2190</p>
-    <p>Fecha de vencimiento de la reservacion: ${moment().add(7, 'days').format('LLLL')}</p>
+    <p>Fecha de vencimiento de la reservacion: ${moment().add(15, 'days').format('LLLL')}</p>
     `;
    let  transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
@@ -175,7 +175,7 @@ cron.schedule('* * * * *', () => {
     }).then(t => {
         if(t.length > 0){
             t.forEach(async (item) => {
-                let d = moment(item.datereserved).add(7, 'days');
+                let d = moment(item.datereserved).add(15, 'days');
                 if(moment().isAfter(d) || moment().isSame(d)){
                     await tickets.findOneAndUpdate({
                         id: item.id
