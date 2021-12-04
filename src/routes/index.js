@@ -88,7 +88,7 @@ ts = (n)? parseInt(ts.replace("000","")) : (d)? parseInt(ts.replace("00","")) : 
     <p>Estado: ${req.params.state}</p>
     <p>Ciudad: ${req.params.city}</p>
     <h1>Favor de depositar en esta tarjeta</h1>
-    <p>Numero de tarjeta: 5204 1654 4685 2190</p>
+    <p>Numero de tarjeta: 4152 3137 0192 4495</p>
     <p>Fecha de vencimiento de la reservacion: ${moment().add(15, 'days').format('LLLL')}</p>
     `;
    let  transporter = nodemailer.createTransport({
